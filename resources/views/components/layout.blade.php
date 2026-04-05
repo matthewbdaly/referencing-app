@@ -12,16 +12,16 @@
         @endif
     </head>
     <body class="bg-gradient-to-r from-teal-200 to-green-400 text-black">
-        <header class="w-full bg-white p-6 lg:p-8 flex items-center justify-between px-6 py-4 ">
+        <header class="w-full bg-white shadow-lg p-6 lg:p-8 flex items-center justify-between px-6 py-4 ">
             <a href="/" class="place-content-start">{{ config('app.name', 'Laravel') }}</a>
             @if (Route::has('login'))
                 <nav class="flex items-center gap-4">
                     @auth
                         <a
-                            href="{{ url('/dashboard') }}"
+                            href="{{ route('home') }}"
                             class=""
                         >
-                            Dashboard
+                            Home
                         </a>
                     @else
                         <a
@@ -42,11 +42,7 @@
                 </nav>
             @endif
         </header>
-        <div class="m-6 lg:m-8 bg-white shadow rounded-lg flex items-center lg:justify-center min-h-screen flex-col">
-            <main class="">
-                {{ $slot }}
-            </main>
-        </div>
+        {{ $slot }}
 
         @if (Route::has('login'))
             <div class=""></div>
