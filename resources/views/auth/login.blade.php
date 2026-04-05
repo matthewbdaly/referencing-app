@@ -28,6 +28,7 @@
                     </span>
                 </label>
                 <input type="submit" class="col-start-2 bg-gray-800 text-white rounded shadow w-full py-2" value="Submit" />
+                <a class="col-start-2" href="{{ route('password.request') }}">Forgot password?</a>
             </form>
         </main>
     </div>
