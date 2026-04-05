@@ -11,7 +11,7 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
     </head>
-    <body class="bg-stone-200 dark:bg-stone-700 text-black dark:text-white">
+    <body class="bg-gradient-to-r from-teal-200 to-green-400 text-black">
         <header class="w-full bg-white p-6 lg:p-8 flex items-center justify-between px-6 py-4 ">
             <a href="/" class="place-content-start">{{ config('app.name', 'Laravel') }}</a>
             @if (Route::has('login'))
