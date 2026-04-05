@@ -42,7 +42,10 @@ final class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $project->name = $request->get('name');
+        $project->public = $request->get('public', false);
+        $project->save();
+        return response()->redirectToRoute('project.show', ['project' => $project]);
     }
 
     /**
