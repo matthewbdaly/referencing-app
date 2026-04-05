@@ -11,10 +11,11 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
     </head>
-    <body class="bg-stone-200 dark:bg-stone-700 text-black dark:text-white p-6 lg:p-8 flex items-center lg:justify-center min-h-screen flex-col">
-        <header class="">
+    <body class="bg-stone-200 dark:bg-stone-700 text-black dark:text-white">
+        <header class="w-full bg-white p-6 lg:p-8 flex items-center justify-between px-6 py-4 ">
+            <a href="/" class="place-content-start">{{ config('app.name', 'Laravel') }}</a>
             @if (Route::has('login'))
-                <nav class="">
+                <nav class="flex items-center gap-4">
                     @auth
                         <a
                             href="{{ url('/dashboard') }}"
@@ -41,7 +42,7 @@
                 </nav>
             @endif
         </header>
-        <div class="">
+        <div class="m-6 lg:m-8 bg-white shadow rounded-lg flex items-center lg:justify-center min-h-screen flex-col">
             <main class="">
                 {{ $slot }}
             </main>
