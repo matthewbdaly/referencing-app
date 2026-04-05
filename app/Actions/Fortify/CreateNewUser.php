@@ -20,6 +20,7 @@ final class CreateNewUser implements CreatesNewUsers
      *
      * @throws ValidationException
      */
+    #[\Override]
     public function create(array $input): User
     {
         Validator::make($input, [

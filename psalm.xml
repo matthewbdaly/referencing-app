@@ -16,4 +16,14 @@
             <directory name="vendor" />
         </ignoreFiles>
     </projectFiles>
+    <issueHandlers>
+        <UnusedClass>
+            <errorLevel type="suppress">
+                <directory name="app/Policies" />
+                <directory name="app/Providers" />
+                <directory name="database/factories" />
+                <directory name="database/seeders" />
+            </errorLevel>
+        </UnusedClass>
+    </issueHandlers>
 </psalm>
