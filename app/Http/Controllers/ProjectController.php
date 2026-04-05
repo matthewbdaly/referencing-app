@@ -13,7 +13,12 @@ final class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $project = new Project();
+        $project->name = $request->get('name');
+        $project->public = $request->get('public', false);
+        $project->owner_id = $request->user()->id;
+        $project->save();
+        return response()->redirectToRoute('home');
     }
 
     /**

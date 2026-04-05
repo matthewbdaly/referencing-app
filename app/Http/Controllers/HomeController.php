@@ -13,7 +13,7 @@ final class HomeController extends Controller
     {
         $user = $request->user();
         return view('home', [
-            'projects' => $user->projects,
+            'projects' => $user->projects->sortBy('name'),
         ]);
     }
 }
