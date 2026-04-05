@@ -10,10 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('terms', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('taxonomy_id')->references('id')->on('taxonomies');
+        Schema::create('reference_term', function (Blueprint $table) {
+            $table->foreignId('reference_id')->references('id')->on('references');
+            $table->foreignId('term_id')->references('id')->on('terms');
             $table->timestamps();
         });
     }
@@ -23,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('terms');
+        Schema::dropIfExists('reference_term');
     }
 };

@@ -24,7 +24,7 @@ return new class extends Migration {
             $table->string('issue')->nullable();
             $table->string('doi')->nullable();
             $table->timestamp('accessed_at')->useCurrent();
-            $table->foreignId('project_id');
+            $table->foreignId('project_id')->references('id')->on('projects');
             $table->timestamps();
         });
     }

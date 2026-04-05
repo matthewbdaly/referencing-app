@@ -14,9 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->boolean('public')->default(false);
-            $table->foreignId('owner_id')->constrained(
-                table: 'users',
-            );
+            $table->foreignId('owner_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
