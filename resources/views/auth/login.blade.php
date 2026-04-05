@@ -1,16 +1,16 @@
 <x-layout>
-    <form method="POST" action="{{ route('register.store') }}" class="grid grid-cols-[100px_1fr] items-center gap-4 max-w-md">
+    <form method="POST" action="{{ route('login.store') }}" class="grid grid-cols-[100px_1fr] items-center gap-4 max-w-md">
         @csrf
         @error('username')
             <div class="w-full p-2 bg-pink-600 text-white col-span-2">{{ $message }}</div>
         @enderror
         <label for="username" class="text-sm font-medium text-gray-700">Email address</label>
-        <input id="username" name="username" type="email" required placeholder="Email address" class="rounded-md border border-gray-300 p-2 invalid:border-pink-600 invalid:text-pink-600 focus:ring-2 focus:ring-blue-500 focus:invalid:ring-pink-600 outline-none" value="{{ old('username') }}" />
+        <input id="username" name="username" type="email" required autocomplete="email" placeholder="Email address" class="rounded-md border border-gray-300 p-2 invalid:border-pink-600 invalid:text-pink-600 focus:ring-2 focus:ring-blue-500 focus:invalid:ring-pink-600 outline-none" value="{{ old('username') }}" />
         @error('password')
             <div class="w-full p-2 bg-pink-600 text-white col-span-2">{{ $message }}</div>
         @enderror
         <label for="password" class="text-sm font-medium text-gray-700">Password</label>
-        <input id="password" name="password" type="password" required placeholder="Password" class="rounded-md border border-gray-300 p-2 invalid:border-pink-600 invalid:text-pink-600 focus:ring-2 focus:ring-blue-500 focus:invalid:ring-pink-600 outline-none" />
+        <input id="password" name="password" type="password" required autocomplete="current-password" placeholder="Password" class="rounded-md border border-gray-300 p-2 invalid:border-pink-600 invalid:text-pink-600 focus:ring-2 focus:ring-blue-500 focus:invalid:ring-pink-600 outline-none" />
         <label for="remember" class="col-start-2 flex items-center gap-3 cursor-pointer group">
             <div class="relative flex items-center">
                 <input type="checkbox" id="remember" name="remember"
