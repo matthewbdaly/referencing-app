@@ -1,0 +1,13 @@
+name: referencing
+recipe: laravel
+config:
+  webroot: public/
+  php: '8.5'
+services:
+  cache:
+    type: redis
+  pma:
+    type: phpmyadmin
+proxy:
+  pma:
+    - pma.referencing.lndo.site
