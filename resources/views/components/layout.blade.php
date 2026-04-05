@@ -11,7 +11,7 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
     </head>
-    <body class="">
+    <body class="bg-stone-200 dark:bg-stone-700 text-black dark:text-white p-6 lg:p-8 flex items-center lg:justify-center min-h-screen flex-col">
         <header class="">
             @if (Route::has('login'))
                 <nav class="">
