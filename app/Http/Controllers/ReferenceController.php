@@ -54,8 +54,10 @@ final class ReferenceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Reference $reference)
     {
-        //
+        $project = $reference->project;
+        $reference->delete();
+        return response()->redirectToRoute('projects.show', ['project' => $project]);
     }
 }
