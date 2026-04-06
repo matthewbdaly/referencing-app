@@ -25,10 +25,10 @@ final class StoreReferenceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'url' => 'nullable|url',
-            'author' => 'string',
-            'type' => 'required|string',
+            'title'      => 'required|string',
+            'url'        => 'nullable|url',
+            'author'     => 'string',
+            'type'       => 'required|string',
             'project_id' => 'required|exists:projects,id',
         ];
     }

@@ -69,7 +69,7 @@ final class Reference extends Model
     protected function casts(): array
     {
         return [
-            'type' => ReferenceType::class,
+            'type'        => ReferenceType::class,
             'accessed_at' => 'datetime',
         ];
     }
