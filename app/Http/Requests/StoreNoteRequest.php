@@ -14,7 +14,7 @@ final class StoreNoteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,8 @@ final class StoreNoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'reference_id' => 'required|int|exists:references,id',
+            'body'         => 'required|string',
         ];
     }
 }

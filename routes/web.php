@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ReferenceController;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,9 @@ Route::middleware('auth')->group(function () {
         'store', 'show', 'edit', 'update', 'destroy',
     ]);
     Route::resource('/references', ReferenceController::class)->only([
+        'store', 'show', 'destroy',
+    ]);
+    Route::resource('/notes', NoteController::class)->only([
         'store', 'show', 'destroy',
     ]);
 });
