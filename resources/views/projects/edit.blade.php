@@ -71,20 +71,10 @@
                                class="text-sm text-gray-500 hover:text-gray-700">
                                 Cancel
                             </a>
-                            <div class="flex space-x-3">
-                                <form method="POST" action="{{ route('projects.destroy', ['project' => $project->id]) }}" onsubmit="return confirm('Are you sure you want to delete this project? This action cannot be undone.')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" 
-                                            class="px-4 py-2 border border-red-300 rounded-md shadow-sm text-sm font-medium text-red-700 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                                        Delete Project
-                                    </button>
-                                </form>
-                                <button type="submit" 
-                                        class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                    Save Changes
-                                </button>
-                            </div>
+                            <button type="submit" 
+                                    class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Save Changes
+                            </button>
                         </div>
                     </form>
                 </div>

@@ -26,7 +26,8 @@
                             </svg>
                             Edit Project
                         </a>
-                        <form method="POST" action="{{ route('projects.destroy', ['project' => $project->id]) }}" onsubmit="return confirm('Are you sure you want to delete this project?')">
+                        @if(auth()->user()->id === $project->owner_id)
+                        <form method="POST" action="{{ route('projects.destroy', ['project' => $project->id]) }}" onsubmit="return confirm('Are you sure you want to delete this project? This action cannot be undone.')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" 
@@ -37,6 +38,7 @@
                                 Delete
                             </button>
                         </form>
+                        @endif
                     </div>
                 </div>
 

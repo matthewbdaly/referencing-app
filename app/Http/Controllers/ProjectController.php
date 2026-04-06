@@ -59,7 +59,7 @@ final class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $project->destroy();
+        $project->delete();
         return response()->redirectToRoute('home');
     }
 }
