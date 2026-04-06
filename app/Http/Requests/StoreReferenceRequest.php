@@ -14,7 +14,7 @@ final class StoreReferenceRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,7 +25,10 @@ final class StoreReferenceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string',
+            'url' => 'required|url',
+            'author' => 'string',
+            'project_id' => 'required|exists:projects,id',
         ];
     }
 }

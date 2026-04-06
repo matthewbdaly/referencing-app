@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ReferenceController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
@@ -11,4 +12,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('/projects', ProjectController::class)->only([
         'store', 'show', 'edit', 'update', 'destroy',
     ]);
+    Route::resource('/references', ReferenceController::class);
 });
