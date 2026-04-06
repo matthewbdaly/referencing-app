@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @property int $id
@@ -49,6 +50,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Reference whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Reference whereUrl($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Reference whereVolume($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Note> $notes
+ * @property-read int|null $notes_count
  * @mixin \Eloquent
  */
 #[Fillable(['title'])]
@@ -78,5 +81,10 @@ final class Reference extends Model
     public function terms(): BelongsToMany
     {
         return $this->belongsToMany(Term::class);
+    }
+
+    public function notes(): HasMany
+    {
+        return $this->hasMany(Note::class);
     }
 }
