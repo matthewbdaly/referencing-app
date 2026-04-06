@@ -6,9 +6,9 @@ namespace App;
 
 enum ReferenceType: string
 {
-    case BlogPost = "Blog post";
-    case ConferencePaper = "Conference paper";
-    case EncyclopediaArticle = "Encyclopedia article";
-    case JournalArticle = "Journal article";
-    case WebPage = "Web page";
+    case BlogPost = "BlogPost";
+    case ConferencePaper = "ConferencePaper";
+    case EncyclopediaArticle = "EncyclopediaArticle";
+    case JournalArticle = "JournalArticle";
+    case WebPage = "WebPage";
 }

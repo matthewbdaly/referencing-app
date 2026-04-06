@@ -4,13 +4,18 @@ declare(strict_types=1);
 
 namespace App\Http\Integrations\SemanticScholarAcademicGraph\Requests;
 
+use App\Http\Integrations\SemanticScholarAcademicGraph\DataObjects\Paper;
+use App\ReferenceType;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\LazyCollection;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\CachePlugin\Contracts\Driver;
 use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
 use Saloon\CachePlugin\Traits\HasCaching;
 use Saloon\CachePlugin\Contracts\Cacheable;
+use Saloon\Http\Response;
 
 final class PaperBulkSearch extends Request implements Cacheable
 {
@@ -50,4 +55,29 @@ final class PaperBulkSearch extends Request implements Cacheable
         return 3600;
     }
 
+    public function createDtoFromResponse(Response $response): mixed
+    {
+        return LazyCollection::make($response->array('data'))
+            ->map(function (array $data) {
+                return new Paper(
+                    paperId: $data['paperId'],
+                    url: $data['url'],
+                    title: $data['title'],
+                    publicationDate: Carbon::parse($data['publicationDate']),
+                    referenceType: $this->mapPublicationTypeToReferenceType($data['publicationTypes'][0] ?? null),
+                );
+            });
+    }
+
+    private function mapPublicationTypeToReferenceType(?string $publicationType): ?ReferenceType
+    {
+        return match ($publicationType) {
+            'JournalArticle'      => ReferenceType::JournalArticle,
+            'ConferencePaper'     => ReferenceType::ConferencePaper,
+            'BlogPost'            => ReferenceType::BlogPost,
+            'EncyclopediaArticle' => ReferenceType::EncyclopediaArticle,
+            'WebPage'             => ReferenceType::WebPage,
+            default               => null,
+        };
+    }
 }
