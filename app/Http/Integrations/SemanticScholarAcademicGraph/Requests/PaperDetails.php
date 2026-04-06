@@ -45,12 +45,12 @@ final class PaperDetails extends Request implements Cacheable
 
     public function resolveCacheDriver(): Driver
     {
-        return new LaravelCacheDriver(Cache::store('redis'));
+        return new LaravelCacheDriver(Cache::store('file'));
     }
 
     public function cacheExpiryInSeconds(): int
     {
-        return 3600;
+        return 60 * 60 * 24 * 14; // 14 days
     }
 
     public function createDtoFromResponse(Response $response): Paper
