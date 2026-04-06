@@ -10,6 +10,7 @@
         "laravel/fortify": "^1.36",
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
+        "saloonphp/cache-plugin": "^3.0",
         "saloonphp/laravel-plugin": "^4.0",
         "saloonphp/saloon": "^4.0"
     },

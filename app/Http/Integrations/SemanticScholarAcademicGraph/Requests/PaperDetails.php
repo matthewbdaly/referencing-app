@@ -2,11 +2,18 @@
 
 namespace App\Http\Integrations\SemanticScholarAcademicGraph\Requests;
 
+use Illuminate\Support\Facades\Cache;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
+use Saloon\CachePlugin\Contracts\Driver;
+use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
+use Saloon\CachePlugin\Traits\HasCaching;
+use Saloon\CachePlugin\Contracts\Cacheable;
 
-class PaperDetails extends Request
+final class PaperDetails extends Request implements Cacheable
 {
+    use HasCaching;
+
     /**
      * The HTTP method of the request
      */
@@ -29,4 +36,13 @@ class PaperDetails extends Request
         ];
     }
 
+    public function resolveCacheDriver(): Driver
+    {
+        return new LaravelCacheDriver(Cache::store('redis'));
+    }
+
+    public function cacheExpiryInSeconds(): int
+    {
+        return 3600;
+    }
 }
