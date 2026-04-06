@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Integrations\SemanticScholarAcademicGraph\Requests;
 
 use App\Http\Integrations\SemanticScholarAcademicGraph\DataObjects\Paper;
-use App\ReferenceType;
+use App\Http\Integrations\SemanticScholarAcademicGraph\Traits\MapsPublicationTypes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\LazyCollection;
@@ -20,6 +20,7 @@ use Saloon\Http\Response;
 final class PaperBulkSearch extends Request implements Cacheable
 {
     use HasCaching;
+    use MapsPublicationTypes;
 
     /**
      * The HTTP method of the request
@@ -67,17 +68,5 @@ final class PaperBulkSearch extends Request implements Cacheable
                     referenceType: $this->mapPublicationTypeToReferenceType($data['publicationTypes'][0] ?? null),
                 );
             });
-    }
-
-    private function mapPublicationTypeToReferenceType(?string $publicationType): ?ReferenceType
-    {
-        return match ($publicationType) {
-            'JournalArticle'      => ReferenceType::JournalArticle,
-            'ConferencePaper'     => ReferenceType::ConferencePaper,
-            'BlogPost'            => ReferenceType::BlogPost,
-            'EncyclopediaArticle' => ReferenceType::EncyclopediaArticle,
-            'WebPage'             => ReferenceType::WebPage,
-            default               => null,
-        };
     }
 }
