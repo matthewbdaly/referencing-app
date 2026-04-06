@@ -28,7 +28,9 @@ final class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('projects.show', [
+            'project' => $project->load(['owner', 'references']),
+        ]);
     }
 
     /**
@@ -36,7 +38,9 @@ final class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view('projects.edit', [
+            'project' => $project->load('owner'),
+        ]);
     }
 
     /**
