@@ -181,7 +181,11 @@
                             <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200">
                                 <div class="flex items-start justify-between">
                                     <div class="flex-1">
-                                        <h3 class="text-base font-medium text-gray-900">{{ $reference->title }}</h3>
+                                        <h3 class="text-base font-medium text-gray-900">
+                                            <a href="{{ route('references.show', ['reference' => $reference->id]) }}" class="text-blue-600 hover:text-blue-800 hover:underline">
+                                                {{ $reference->title }}
+                                            </a>
+                                        </h3>
                                         <p class="mt-1 text-sm text-gray-600">{{ $reference->author }}</p>
                                         @if($reference->url)
                                         <a href="{{ $reference->url }}" target="_blank" class="mt-2 inline-flex items-center text-sm text-blue-600 hover:text-blue-800">

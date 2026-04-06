@@ -12,5 +12,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/projects', ProjectController::class)->only([
         'store', 'show', 'edit', 'update', 'destroy',
     ]);
-    Route::resource('/references', ReferenceController::class);
+    Route::resource('/references', ReferenceController::class)->only([
+        'store', 'show', 'destroy',
+    ]);
 });

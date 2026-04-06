@@ -54,7 +54,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read int|null $notes_count
  * @mixin \Eloquent
  */
-#[Fillable(['title'])]
+#[Fillable(['title', 'url', 'author', 'type', 'project_id', 'accessed_at'])]
 final class Reference extends Model
 {
     /** @use HasFactory<\Database\Factories\ReferenceFactory> */
@@ -70,6 +70,7 @@ final class Reference extends Model
     {
         return [
             'type' => ReferenceType::class,
+            'accessed_at' => 'datetime',
         ];
     }
 

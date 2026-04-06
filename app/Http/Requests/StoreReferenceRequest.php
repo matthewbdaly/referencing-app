@@ -26,8 +26,9 @@ final class StoreReferenceRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'url' => 'required|url',
+            'url' => 'nullable|url',
             'author' => 'string',
+            'type' => 'required|string',
             'project_id' => 'required|exists:projects,id',
         ];
     }
