@@ -39,7 +39,7 @@ final class PaperDetails extends Request implements Cacheable
     protected function defaultQuery(): array
     {
         return [
-            'fields' => 'title,year,abstract,citationCount,referenceCount,authors,authors.name,authors.affiliations,publicationTypes,venue,journal,doi,arxivId,url,openAccessPdf,fieldsOfStudy,s2FieldsOfStudy',
+            'fields' => 'title,year,abstract,citationCount,referenceCount,authors,authors.name,authors.affiliations,publicationTypes,venue,journal,url,openAccessPdf,fieldsOfStudy,s2FieldsOfStudy',
         ];
     }
 
@@ -70,8 +70,6 @@ final class PaperDetails extends Request implements Cacheable
             authors: $data['authors'] ?? null,
             venue: $data['venue'] ?? null,
             journal: $data['journal'] ?? null,
-            doi: $data['doi'] ?? null,
-            arxivId: $data['arxivId'] ?? null,
             openAccessPdf: $data['openAccessPdf'] ?? null,
             fieldsOfStudy: $data['fieldsOfStudy'] ?? null,
             s2FieldsOfStudy: $data['s2FieldsOfStudy'] ?? null,
