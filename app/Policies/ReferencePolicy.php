@@ -14,7 +14,7 @@ final class ReferencePolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ final class ReferencePolicy
      */
     public function view(User $user, Reference $reference): bool
     {
-        return false;
+        return $reference->project->public || $reference->project->owner_id === $user->id;
     }
 
     /**
@@ -30,7 +30,7 @@ final class ReferencePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -38,7 +38,7 @@ final class ReferencePolicy
      */
     public function update(User $user, Reference $reference): bool
     {
-        return false;
+        return $reference->project->owner_id === $user->id;
     }
 
     /**
@@ -46,7 +46,7 @@ final class ReferencePolicy
      */
     public function delete(User $user, Reference $reference): bool
     {
-        return false;
+        return $reference->project->owner_id === $user->id;
     }
 
     /**
@@ -54,7 +54,7 @@ final class ReferencePolicy
      */
     public function restore(User $user, Reference $reference): bool
     {
-        return false;
+        return $reference->project->owner_id === $user->id;
     }
 
     /**
@@ -62,6 +62,6 @@ final class ReferencePolicy
      */
     public function forceDelete(User $user, Reference $reference): bool
     {
-        return false;
+        return $reference->project->owner_id === $user->id;
     }
 }

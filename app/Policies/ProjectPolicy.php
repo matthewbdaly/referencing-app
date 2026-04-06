@@ -14,7 +14,7 @@ final class ProjectPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ final class ProjectPolicy
      */
     public function view(User $user, Project $project): bool
     {
-        return false;
+        return $project->public || $project->owner_id === $user->id;
     }
 
     /**
@@ -30,7 +30,7 @@ final class ProjectPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -38,7 +38,7 @@ final class ProjectPolicy
      */
     public function update(User $user, Project $project): bool
     {
-        return false;
+        return $project->owner_id === $user->id;
     }
 
     /**
@@ -46,7 +46,7 @@ final class ProjectPolicy
      */
     public function delete(User $user, Project $project): bool
     {
-        return false;
+        return $project->owner_id === $user->id;
     }
 
     /**
@@ -54,7 +54,7 @@ final class ProjectPolicy
      */
     public function restore(User $user, Project $project): bool
     {
-        return false;
+        return $project->owner_id === $user->id;
     }
 
     /**
@@ -62,6 +62,6 @@ final class ProjectPolicy
      */
     public function forceDelete(User $user, Project $project): bool
     {
-        return false;
+        return $project->owner_id === $user->id;
     }
 }

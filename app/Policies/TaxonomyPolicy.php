@@ -14,7 +14,7 @@ final class TaxonomyPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ final class TaxonomyPolicy
      */
     public function view(User $user, Taxonomy $taxonomy): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ final class TaxonomyPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**

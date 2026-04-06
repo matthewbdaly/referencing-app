@@ -14,7 +14,7 @@ final class TermPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ final class TermPolicy
      */
     public function view(User $user, Term $term): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ final class TermPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
