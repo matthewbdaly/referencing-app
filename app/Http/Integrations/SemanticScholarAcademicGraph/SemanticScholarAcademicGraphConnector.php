@@ -9,10 +9,13 @@ use Saloon\Traits\Plugins\AcceptsJson;
 use Saloon\RateLimitPlugin\Traits\HasRateLimits;
 use Saloon\RateLimitPlugin\Contracts\RateLimitStore;
 use Saloon\RateLimitPlugin\Stores\MemoryStore;
+use Saloon\CachePlugin\Contracts\Cacheable;
+use Saloon\CachePlugin\Traits\HasCaching;
 
-final class SemanticScholarAcademicGraphConnector extends Connector
+final class SemanticScholarAcademicGraphConnector extends Connector implements Cacheable
 {
     use AcceptsJson;
+    use HasCaching;
     use HasRateLimits;
 
     /**
@@ -47,5 +50,15 @@ final class SemanticScholarAcademicGraphConnector extends Connector
     protected function resolveRateLimitStore(): RateLimitStore
     {
         return new MemoryStore();
+    }
+
+    public function resolveCacheDriver(): Driver
+    {
+        return new LaravelCacheDriver(Cache::store('file'));
+    }
+
+    public function cacheExpiryInSeconds(): int
+    {
+        return 60 * 60 * 24 * 14; // 14 days
     }
 }

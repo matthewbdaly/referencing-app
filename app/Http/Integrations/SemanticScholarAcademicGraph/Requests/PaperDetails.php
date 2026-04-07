@@ -7,18 +7,12 @@ namespace App\Http\Integrations\SemanticScholarAcademicGraph\Requests;
 use App\Http\Integrations\SemanticScholarAcademicGraph\DataObjects\Paper;
 use App\Http\Integrations\SemanticScholarAcademicGraph\Traits\MapsPublicationTypes;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Cache;
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
-use Saloon\CachePlugin\Contracts\Driver;
-use Saloon\CachePlugin\Drivers\LaravelCacheDriver;
-use Saloon\CachePlugin\Traits\HasCaching;
-use Saloon\CachePlugin\Contracts\Cacheable;
 use Saloon\Http\Response;
 
-final class PaperDetails extends Request implements Cacheable
+final class PaperDetails extends Request
 {
-    use HasCaching;
     use MapsPublicationTypes;
 
     /**
@@ -41,16 +35,6 @@ final class PaperDetails extends Request implements Cacheable
         return [
             'fields' => 'title,year,abstract,citationCount,referenceCount,authors,authors.name,authors.affiliations,publicationTypes,venue,journal,url,openAccessPdf,fieldsOfStudy,s2FieldsOfStudy',
         ];
-    }
-
-    public function resolveCacheDriver(): Driver
-    {
-        return new LaravelCacheDriver(Cache::store('file'));
-    }
-
-    public function cacheExpiryInSeconds(): int
-    {
-        return 60 * 60 * 24 * 14; // 14 days
     }
 
     public function createDtoFromResponse(Response $response): Paper
