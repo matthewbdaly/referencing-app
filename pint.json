@@ -1,13 +1,14 @@
 {
     "preset": "per",
     "rules": {
-        "declare_strict_types": true,
-        "final_class": true,
         "binary_operator_spaces": {
             "default": "single_space",
             "operators": {
                 "=>": "align_single_space_minimal"
             }
-        }
+        },
+        "declare_strict_types": true,
+        "final_class": true,
+        "strict_comparison": true
     }
 }
